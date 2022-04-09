@@ -1,4 +1,4 @@
-class kiki {
+class Kiki {
     constructor(){
         this.r=150;
         this.x=50;
