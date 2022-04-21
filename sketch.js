@@ -4,9 +4,10 @@ let biimg;
 let bimg;
 let birds =[];
 let soundClassifier;
+let counter = 0;
 
 function preload(){
-   
+
    const options = { probabilityThreshold: 0.95};
   soundClassifier = ml5.soundClassifier('SpeechCommands18w', options);
 
@@ -49,6 +50,9 @@ function draw(){
     for( let b of birds){
         b.move();
         b.show();
+        if(!k.hits(b)){
+          counter++;
+        }
         if( K.hits(b)){
             console.log('game over');
             alertThis();
@@ -56,10 +60,11 @@ function draw(){
         }
 
     }
+    text('SCORE :' + counter, width - 400, height / 5);
     K.show();
     K.move();
 
-    
+
 }
 
 ///////////////////////////// extra
@@ -67,9 +72,9 @@ function draw(){
 function alertThis(){
     swal({
         //title:player,
-        text: "GAME OVER!",
+        text: "GAME OVER! \n \n YOUR SCORE : " + counter,
        closeOnClickOutside:true
- 
+
    })
 
 
