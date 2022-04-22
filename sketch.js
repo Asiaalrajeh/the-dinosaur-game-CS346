@@ -5,6 +5,17 @@ let bimg;
 let birds =[];
 let soundClassifier;
 let counter =0;
+//let highscore = localStorage.getItem("highscore");
+//var storagedHighScore = localStorage.getItem("highscore");
+var localStorageName = "highScore";
+var highScore;
+
+
+if(localStorage.getItem(localStorageName) == null) {
+    highScore = 0;
+} else {
+    highScore = localStorage.getItem(localStorageName);
+}
 
 function preload(){
 
@@ -50,7 +61,10 @@ function draw(){
     for( let b of birds){
         b.move();
         b.show();
-        if( !K.hits(b)){counter++;}
+        if( !K.hits(b)){
+            counter++;
+            highScore = Math.max(counter, highScore);
+            localStorage.setItem(localStorageName, highScore);}
         if( K.hits(b)){
             console.log('game over');
             alertThis();
@@ -70,7 +84,7 @@ function draw(){
 function alertThis(){
     swal({
         //title:player,
-        text: "GAME OVER!\n YOUR SCORE: " + counter,
+        text: "GAME OVER!\n \n YOUR SCORE:" +counter+ "\n \n HIGH SCORE :" + highScore,
        closeOnClickOutside:true
 
    })
