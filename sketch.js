@@ -9,6 +9,7 @@ let counter =0;
 //var storagedHighScore = localStorage.getItem("highscore");
 var localStorageName = "highScore";
 var highScore;
+let mySound1 = new Audio('game_over.wav')
 
 
 if(localStorage.getItem(localStorageName) == null) {
@@ -66,6 +67,7 @@ function draw(){
             highScore = Math.max(counter, highScore);
             localStorage.setItem(localStorageName, highScore);}
         if( K.hits(b)){
+            mySound1.play()
             console.log('game over');
             alertThis();
             noLoop();

@@ -1,3 +1,4 @@
+let mySound = new Audio('jumping_sound.wav')
 class Kiki {
     constructor(){
         this.r=150;
@@ -13,7 +14,8 @@ class Kiki {
     }
 
     fly(){
-        this.vy = -30;  
+        this.vy = -30; 
+        mySound.play() 
     }
 
     move(){
