@@ -69,7 +69,7 @@ function draw(){
         if( K.hits(b)){
             mySound1.play()
             console.log('game over');
-            alertThis();
+            showEnd();
             noLoop();
         }
 
@@ -83,13 +83,41 @@ function draw(){
 
 ///////////////////////////// extra
 
-function alertThis(){
-    swal({
+//function alertThis(){
+   // swal({
         //title:player,
-        text: "GAME OVER!\n \n YOUR SCORE:" +counter+ "\n \n HIGH SCORE :" + highScore,
-       closeOnClickOutside:true
+       // text: "GAME OVER!\n \n YOUR SCORE:" +counter+ "\n \n HIGH SCORE :" + highScore,
+       //closeOnClickOutside:true
 
-   })
+   //})
 
+
+//}
+function showEnd(){
+
+    document.getElementById("score").innerHTML="Your Score:"+ counter;
+    document.getElementById("endScreen").style.display="block";
+    document.getElementById("scoreContainer").innerHTML="Loading...";
+    getScores()
+}
+
+function getScores(){
+    fetch('form.php').then(function(response){
+        response.json().then(function(data){
+            console.log(data);
+            document.getElementById("scoreContainer").innerHTML= formatScore(data);
+
+        });
+    });
+}
+
+function formatScore(data){
+
+    let html = "<table style= 'width:100%; text-align: center;'>";
+
+    html += "<tr style='background:rgb(123,146,196); color:white'>";
+    html += "<td></td><td><b>Name<b></td><td><b>Score<b></td></tr>";
+
+   
 
 }

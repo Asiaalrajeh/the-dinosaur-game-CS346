@@ -92,7 +92,9 @@ $user_data = check_login($conn2);
     <div class = "hello" >
 
     <br><br>
-    <h1 ALIGN = "center"> Welcome <?php echo $user_data['username'];?></h1>
+    <h1 ALIGN = "center"> Welcome </h1>
+
+     <!---<?php echo $user_data['username'];?>-->
 
     <p>The rules of the game are simple..</p>
     <br>

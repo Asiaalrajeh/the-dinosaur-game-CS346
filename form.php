@@ -8,10 +8,15 @@ include("connection.php");
 	//$user_data = check_login($conn2);
 
 
-	$username = $_POST['username'];
-	$password = $_POST['password'];
+  $username = isset($_POST["username"]) ? $_POST["username"] : "";
+    $password = isset($_POST["password"]) ? $_POST["password"] : "";
+    $score = isset($_POST["score"]) ? $_POST["score"] : "";
+
+
+//	$username = $_POST['username'];
+//	$password = $_POST['password'];
   //$score = $_POST['highScore'];
-  $Score = $_GET['score'];
+ // $Score = $_GET['score'];
 
 
 	//$conn = new mysqli('localhost','root','','test'); // 2 username and password.
@@ -20,10 +25,10 @@ include("connection.php");
 	
 
 
-	if ($conn)
-	{
+	//if ($conn)
+	//{
 		//die("connection");
-	}
+	//}
 
 	if (!empty($username) && !empty($password))
 	{

@@ -9,6 +9,8 @@
     <script src="https://unpkg.com/ml5@0.3.1/dist/ml5.min.js"></script>
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset="utf-8" />
     <style>
     html, body {
@@ -26,6 +28,14 @@
     <script src="sketch.js"></script>
    <!--<script src="sketch.php"></script>-->
 
-    <p id = "score"></p>
+   <div id="endScreen" class="menu" style="display: none;">
+    <h2>GAME OVER!</h2>
+    <div id="score"></div>
+    <br>
+    <div id="scoreContainer"></div>
+    <br>
+    <br>
+    <button class="btn">OK</button>
+  </div>
   </body>
 </html>
