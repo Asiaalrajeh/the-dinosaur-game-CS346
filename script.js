@@ -1,4 +1,6 @@
 
+
+
 function start(){
 var btn = document.getElementById("btn");
 btn.addEventListener('click',hidden,false)

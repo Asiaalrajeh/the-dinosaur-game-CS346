@@ -1,3 +1,16 @@
+<?php
+session_start();
+include("connection.php");
+
+
+$user_data = check_login($conn2);
+
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -73,12 +86,13 @@
 
       </style>
   </head>
+
   <body>
   
     <div class = "hello" >
 
     <br><br>
-    <h1 ALIGN = "center"> Welcome</h1>
+    <h1 ALIGN = "center"> Welcome <?php echo $user_data['username'];?></h1>
 
     <p>The rules of the game are simple..</p>
     <br>
