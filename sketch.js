@@ -118,6 +118,13 @@ function formatScore(data){
     html += "<tr style='background:rgb(123,146,196); color:white'>";
     html += "<td></td><td><b>Name<b></td><td><b>Score<b></td></tr>";
 
+    
+   for(let i=0;i<data.length;i++){
+    html+="<tr>";
+    html+="<td>"+(i+1)+"</td><td title='"+data[i] ["username"]+"'>"+data[i] ["username"]+
+    "</td><td>"+data[i] ["highScore"]+"</td></tr>";
+}
+return html;
    
 
 }

@@ -140,7 +140,7 @@ session_start();
             <p>
             <label>
 			<input id="button"  type="submit" value="Login" class="button2" >
-			<a href="form.php"><input type="button" class="button2" value="Register" ></a><br>
+			<a href="sign.html"><input type="button" class="button2" value="Register" ></a><br>
             </label></p>
 		</form>
 	</div>
