@@ -5,5 +5,5 @@ The game was built using HTML5, CSS, JavaScript, and PHP as
 programing languages and visual studio code as a code editor. 
 
 # featuers
-1-Sound effects when kiki jumps and when kiki hits the bird.
-2-Leadersboard that shows the highest score for each player.
+1. Sound effects when kiki jumps and when kiki hits the bird.
+2. Leadersboard that shows the highest score for each player.
