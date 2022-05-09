@@ -1,15 +1,15 @@
+
+
 let K;
 let kimg;
 let biimg;
 let bimg;
 let birds =[];
 let soundClassifier;
-let counter =0;
-//let highscore = localStorage.getItem("highscore");
-//var storagedHighScore = localStorage.getItem("highscore");
+let counter = 0; // this counter is for the current score of the user.
 var localStorageName = "highScore";
 var highScore;
-let mySound1 = new Audio('game_over.wav')
+let mySound1 = new Audio('game_over.wav') // this is the game over sound
 
 
 if(localStorage.getItem(localStorageName) == null) {
@@ -18,7 +18,7 @@ if(localStorage.getItem(localStorageName) == null) {
     highScore = localStorage.getItem(localStorageName);
 }
 
-function preload(){
+function preload(){  // preload the images
 
    const options = { probabilityThreshold: 0.95};
   soundClassifier = ml5.soundClassifier('SpeechCommands18w', options);
@@ -29,14 +29,14 @@ function preload(){
 
 
 }
-function setup(){
+function setup(){  // create canvas
     createCanvas(1280,600);
     K = new Kiki();
 
     soundClassifier.classify(gotCommand);
 }
 
-function gotCommand(error, results) {
+function gotCommand(error, results) { 
     if (error) {
       console.error(error);
     }
@@ -46,13 +46,13 @@ function gotCommand(error, results) {
     }
   }
 
-function keyPressed(){
+function keyPressed(){ // when the key space is pressed, make kiki jump.
     if(key == ' '){
         K.fly();
     }
 }
 
-function draw(){
+function draw(){  //this is for the display of the birds.
     if(random(1) < 0.005){
         birds.push(new bird());
     }
@@ -65,66 +65,34 @@ function draw(){
         if( !K.hits(b)){
             counter++;
             highScore = Math.max(counter, highScore);
-            localStorage.setItem(localStorageName, highScore);}
-        if( K.hits(b)){
+            localStorage.setItem(localStorageName, highScore);
+        }
+
+        if( K.hits(b)){  // if kiki hits the bird, then play gameover sound.
             mySound1.play()
             console.log('game over');
             showEnd();
             noLoop();
+          
+
+
+    console.log(highScore);
         }
 
     }
-    text('SCORE: ' + counter, width - 400, height / 5);
+    document.getElementById("cs").innerHTML = ('SCORE: ' + counter);
     K.show();
     K.move();
-
-
-}
-
-///////////////////////////// extra
-
-//function alertThis(){
-   // swal({
-        //title:player,
-       // text: "GAME OVER!\n \n YOUR SCORE:" +counter+ "\n \n HIGH SCORE :" + highScore,
-       //closeOnClickOutside:true
-
-   //})
-
-
-//}
-function showEnd(){
-
-    document.getElementById("score").innerHTML="Your Score:"+ counter;
-    document.getElementById("endScreen").style.display="block";
-    document.getElementById("scoreContainer").innerHTML="Loading...";
-    getScores()
-}
-
-function getScores(){
-    fetch('form.php').then(function(response){
-        response.json().then(function(data){
-            console.log(data);
-            document.getElementById("scoreContainer").innerHTML= formatScore(data);
-
-        });
-    });
-}
-
-function formatScore(data){
-
-    let html = "<table style= 'width:100%; text-align: center;'>";
-
-    html += "<tr style='background:rgb(123,146,196); color:white'>";
-    html += "<td></td><td><b>Name<b></td><td><b>Score<b></td></tr>";
-
-    
-   for(let i=0;i<data.length;i++){
-    html+="<tr>";
-    html+="<td>"+(i+1)+"</td><td title='"+data[i] ["username"]+"'>"+data[i] ["username"]+
-    "</td><td>"+data[i] ["highScore"]+"</td></tr>";
-}
-return html;
    
 
 }
+
+// this function shows your current score.
+function showEnd(){
+
+    document.getElementById("score").innerHTML="Your Score:"+ counter;
+    document.getElementById("hidden1").value = counter;
+    document.getElementById("endScreen").style.display="block";
+    
+}
+
