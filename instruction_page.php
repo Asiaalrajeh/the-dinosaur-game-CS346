@@ -1,10 +1,8 @@
+
 <?php
 session_start();
-include("connection.php");
-
-
-$user_data = check_login($conn2);
-
+  
+include("connection.php"); // include the connection to database 
 ?>
 
 
@@ -77,11 +75,25 @@ $user_data = check_login($conn2);
 
 
 }
+
+  .p2{
+    font-size: large;
+  }
+
     p{
         text-align: center;
+        
     }
-    label{
+    .label2{
+
+      text-align: center;
+      color:black;
+      font-size:20pt;
+
+    }
+    .label1{
         text-align: center;
+        
     }
 
       </style>
@@ -92,14 +104,18 @@ $user_data = check_login($conn2);
     <div class = "hello" >
 
     <br><br>
-    <h1 ALIGN = "center"> Welcome </h1>
-
-     <!---<?php echo $user_data['username'];?>-->
+    <label class = label2 for="">
+   
+<?php                                           // this displays the users name as a greeting message
+echo "<p font-size: 28pt;ALIGN = 'center'>" ."Welcome"." ". $_SESSION['user'] . "!"."</p>"; 
+?>
+</label>
 
     <p>The rules of the game are simple..</p>
     <br>
+    <label class = label1>
     <p ALIGN = "center"> press the <img src="space.png" alt="" width="60px"> to avoid the obstacle</p>
-    
+    </label>
 
     <p ALIGN = "center"> Use your voice and say "UP" for a challenge!</p>
     <p>GOOD LUCK!</p>

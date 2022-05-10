@@ -5,35 +5,34 @@ session_start();
 
     include("connection.php");
 
+
     
 	if($_SERVER['REQUEST_METHOD'] == "POST")
 	{
 		//something was posted
 		$username = $_POST['username'];
 		$password = $_POST['password'];
+        $_SESSION['user']=$username;
 
 		if(!empty($username) && !empty($password) && !is_numeric($username))
 		{
 
 			//read from database
-			$query = "select * from registration2 where username = '$username' limit 1";
+			$query = "select * from registration3 where username = '$username' limit 1";
 			$result = mysqli_query($conn2, $query);
 
 
 			if($result)
-			{
+			{   // if there are any rows with the same username.
 				if($result && mysqli_num_rows($result) > 0)
 				{
-
+                
 					$user_data = mysqli_fetch_assoc($result);
-					
+					// check the username as well.
 					if($user_data['password'] === $password)
 					{
 
-						//$_SESSION['user_id'] = $user_data['user_id'];
 						header("Location:  instruction_page.php");
-                        $query2 = "insert into registration2 (highScore) values ('$Scores')";
-                        mysqli_query($conn2, $query2);
 						die;
 					}
 				}
@@ -130,6 +129,7 @@ session_start();
 
 	<div class="box2">
 		
+        <!-- this form is for the login, the username and password are validated from the database, to make sure it is an exisiting user-->
 		<form method="post">
             <h1  ALIGN = "center">Sign in to enjoy the game!</h1>
             <p>
@@ -140,7 +140,7 @@ session_start();
             <p>
             <label>
 			<input id="button"  type="submit" value="Login" class="button2" >
-			<a href="sign.html"><input type="button" class="button2" value="Register" ></a><br>
+			<a href="sign.php"><input type="button" class="button2" value="Register" ></a><br>
             </label></p>
 		</form>
 	</div>

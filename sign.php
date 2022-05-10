@@ -1,8 +1,33 @@
+<?php
+
+session_start();
+include("connection.php");
+
+
+ 
+     $username = $_POST['username'];
+     $password = $_POST['password'];
+     $_SESSION['user']=$username; //save user's name so that it can be used in other php files.
+
+	if (!empty($username) && !empty($password)) // if both fields are filled, then register user.
+	{
+    //registration is the name of the table
+    $query = "insert into registration3 (username,password,highScore) values ('$username','$password','0')";
+		mysqli_query($conn2, $query);
+
+    header("Location:  instruction_page.php"); // once logged in, head to the instructions page.
+
+  }
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html>
   <head>
     <title>Instructions</title>
-    <script src="script.js"></script>
     <style>
      body {
         background-image: url(cloudsBackgroundFast.gif);
@@ -75,43 +100,28 @@
       </style>
   </head>
   <body>
-  
-    <div class = "box" id="inst">
-
-    <br><br>
-    <h1 ALIGN = "center"> Welcome</h1>
-
-    <p>The rules of the game are simple..</p>
-    <br>
-    <p ALIGN = "center"> press the <img src="space.png" alt="" width="60px"> to avoid the obstacle</p>
-    
-
-    <p ALIGN = "center"> Use your voice and say "UP" for a challenge!</p>
-    <p>GOOD LUCK!</p>
-
-    <br><br>
-    <a href="index.html"><input id="startButton" class="button1" ALIGN = "center" type="button" name="Start" id="start" value="Start">
-    </a>
-
 
   </div>
 
     </div>
-
+<!-- this page includes the html form of the signup page-->
     <div class="box2" id="form">
       <div>
-        <h1  ALIGN = "center">Sign in to enjoy the game!</h1>
-        <form action="form.php" method="post">
+        <h1  ALIGN = "center">Register to enjoy the game!</h1>
+        <form method="post">
             <p>
                 <label> 
-                    <input  id="username" type="text" placeholder="username" name="username">
+                    <input  id="username" type="text" placeholder="create new username" name="username">
                 </label>
             </p>
             <p>
-                    <input id="password" type="password" placeholder="password" name="password">
+                    <input id="password" type="password" placeholder="create new password" name="password">
             </p>
             <p>
-                <input type="button"  ALIGN = "center" id="btn" class="button2" value="Register" name="submit">
+            <input type="submit"  ALIGN = "center" id="btn" class="button2" value="Register" name="submit">
+            <a href="login.php">
+            <input type="button"  ALIGN = "center" class="button2" value="Login">
+            </a>
             </p>
             
         </form>
